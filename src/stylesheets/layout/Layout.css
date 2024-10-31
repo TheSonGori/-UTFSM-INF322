@@ -4,11 +4,40 @@
     display: flex;
     height: 100vh;
     font-family: 'Arimo', sans-serif;
+    position: relative;
+}
+
+.layout__header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    z-index: 1; /* Header encima del contenido pero detrás del NavBar */
+}
+
+.layout__main {
+    display: flex;
+    flex-grow: 1;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: #ffffff;
+    z-index: 2; /* NavBar siempre encima del header */
 }
 
 .layout__content {
-    flex: 1;
-    padding: 20px;
+    padding: 70px 20px 20px; /* Padding-top para que el contenido comience debajo del header */
     background-color: #ffffff;
     overflow-y: auto;
+    flex: 1;
 }

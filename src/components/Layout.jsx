@@ -17,15 +17,19 @@ const Layout = () => {
 
     return (
         <div className="layout">
-            <Logout />
-            <NavBar onSectionChange={handleSectionChange} />
-            <main className="layout__content">
-                {activeSection === "medicacion" && <Medicacion />}
-                {activeSection === "citas" && <Citas />}
-                {activeSection === "emergencias" && <Emergencias />}
-                {activeSection === "configuracion" && <Configuracion />}
-                {activeSection === null && <Base />}
-            </main>
+            <header className="layout__header">
+                <Logout />
+            </header>
+            <div className="layout__main">
+                <NavBar onSectionChange={handleSectionChange} />
+                <main className="layout__content">
+                    {activeSection === "medicacion" && <Medicacion />}
+                    {activeSection === "citas" && <Citas />}
+                    {activeSection === "emergencias" && <Emergencias />}
+                    {activeSection === "configuracion" && <Configuracion />}
+                    {activeSection === null && <Base />}
+                </main>
+            </div>
         </div>
     );
 };
