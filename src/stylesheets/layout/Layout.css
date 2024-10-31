@@ -1,0 +1,14 @@
+/* Layout.css */
+
+.layout {
+    display: flex;
+    height: 100vh;
+    font-family: 'Arimo', sans-serif;
+}
+
+.layout__content {
+    flex: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    overflow-y: auto;
+}

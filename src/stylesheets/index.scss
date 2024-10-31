@@ -1,6 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap');
 
-/*@import './layout/layout.scss';
-@import './nav-bar/nav-bar.scss';
-@import './logout/logout.scss';
-*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+@import './layout/Layout.css';
+@import './layout/CompanyIcon.css';
+@import './nav-bar/NavBar.css';
+@import './logout/Logout.css';
