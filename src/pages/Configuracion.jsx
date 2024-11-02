@@ -41,8 +41,7 @@ const Configuracion = () => {
             <h1 className="configuracion__title">Configuración y Permisos</h1>
             
             <section className="configuracion__section">
-                <h2>Paciente Actual</h2>
-                <p>{patientInfo.name} {patientInfo.lastName}</p>
+                <h2>{patientInfo.name} {patientInfo.lastName}</h2>
                 <button className="configuracion__button" onClick={() => setShowPatientInfoModal(true)}>Ver Información</button>
                 <button className="configuracion__button" onClick={() => setShowEditPatientModal(true)}>Editar Información</button>
             </section>
