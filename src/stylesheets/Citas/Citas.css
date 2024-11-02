@@ -4,19 +4,8 @@
     padding: 20px;
 }
 
-.citas__title {
-    font-size: 2em;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.citas__description {
-    font-size: 1em;
-    color: #666;
-    margin-bottom: 20px;
-}
-
 .citas__section {
+    margin-top: 40px;
     display: flex;
     gap: 30px;
     justify-content: space-between;
@@ -50,7 +39,7 @@
 .citas__add-button {
     font-size: 1.5em;
     color: #fff;
-    background-color: green;
+    background-color: #79b172;
     border-radius: 50%;
     width: 40px;
     height: 40px;

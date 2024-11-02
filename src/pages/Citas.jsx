@@ -54,8 +54,6 @@ const Citas = () => {
 
     return (
         <div className="citas">
-            <h1 className="citas__title">Citas Médicas</h1>
-            <p className="citas__description">Aquí puedes administrar las citas médicas.</p>
             <div className="citas__section">
                 <div className="citas__column">
                     <div className="citas__item">

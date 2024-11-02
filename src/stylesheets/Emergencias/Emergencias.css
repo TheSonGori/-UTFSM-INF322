@@ -1,0 +1,134 @@
+/* src/stylesheets/Emergencias.css */
+
+.emergencias {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.emergencias__left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.emergencias__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.emergencias__title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.emergencias__controls {
+    display: flex;
+    gap: 10px;
+}
+
+.emergencias__add-button, .emergencias__history-button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.emergencias__add-button {
+    background-color: #79b172;
+}
+
+.emergencias__history-button {
+    background-color: #edb5d3;
+}
+
+.emergencias__add-button img, .emergencias__history-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.alerta-list {
+    margin-top: 20px;
+    width: 80%; /* Ajustar el ancho de la lista de alertas */
+}
+
+.alerta-list__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Aumentar el ancho del contenedor de cada alerta */
+}
+
+.alerta-list__delete-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+}
+
+.alerta-list__delete-button:hover {
+    color: #ff4d4d;
+}
+
+/* Estilos para el botón de emergencia */
+.emergencias__right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    text-align: center;
+    margin-top: 2.5em;
+}
+
+.emergencias__emergency-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    background-color: #c6302c;
+    color: white;
+    border-radius: 50%;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.emergencias__emergency-button img {
+    width: 60px;
+    height: 60px;
+}
+
+.emergencias__right h2 {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.emergencias__right p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.emergencias__confirmation {
+    margin-top: 20px;
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
