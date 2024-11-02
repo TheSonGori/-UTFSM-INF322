@@ -1,3 +1,4 @@
+// Configuracion y Permisos
 // src/pages/Medicacion.jsx
 import React from 'react';
 

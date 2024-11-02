@@ -1,0 +1,194 @@
+/* src/stylesheets/Citas/Citas.css */
+
+.citas {
+    padding: 20px;
+}
+
+.citas__title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.citas__description {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.citas__section {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.citas__column {
+    flex: 1;
+}
+
+.citas__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.citas__icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.citas__label {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.citas__add-button {
+    font-size: 1.5em;
+    color: #fff;
+    background-color: green;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.citas__add-button:hover {
+    background-color: #45A049;
+}
+
+/* Modal Styles */
+.modal__content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.citas-form-modal__title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.citas-form-modal__form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.citas-form-modal__input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.citas-form-modal__submit {
+    margin-top: 20px;
+    background-color: #aaa;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.citas-form-modal__submit:hover {
+    background-color: #888;
+}
+
+/* List Styles */
+.citas-list {
+    margin-top: 20px;
+}
+
+.citas-list__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.citas-list__content {
+    flex: 1;
+}
+
+.citas-list__actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.citas-list__checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.citas-list__delete-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+}
+
+.citas-list__delete-button:hover {
+    color: #ff4d4d;
+}
+
+/* Formulario */
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.formulario__label {
+    font-size: 0.9em;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.formulario__input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.formulario__submit {
+    background-color: #aaa;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.formulario__submit:hover {
+    background-color: #888;
+}

@@ -1,3 +1,4 @@
+// Alertas y Emergencias
 // src/pages/Emergencias.jsx
 import React from 'react';
 
