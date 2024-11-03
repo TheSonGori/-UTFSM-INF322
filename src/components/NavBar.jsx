@@ -6,7 +6,6 @@ import iconMedicacion from '../assets/Iconos/Hamburguesa/SecciondeMedicacion.png
 import iconCitas from '../assets/Iconos/Hamburguesa/CitasMedicas.png';
 import iconEmergencias from '../assets/Iconos/Hamburguesa/AlertasyEmergencias.png';
 import iconConfiguracion from '../assets/Iconos/Hamburguesa/ConfiguracionyPermisos.png';
-import Logout from './Logout';
 
 const NavBar = ({ onSectionChange }) => {
     const [showUserMenu, setShowUserMenu] = useState(false);
@@ -57,7 +56,7 @@ const NavBar = ({ onSectionChange }) => {
                             className={`navbar__link ${activeSection === "medicacion" ? "active" : ""}`}
                             onClick={() => handleSectionClick("medicacion")}
                         >
-                            <img src={iconMedicacion} alt="Medicación" className="navbar__icon" />
+                            <img src={iconMedicacion} alt="Medicación" className="navbar__icon"/>
                             Sección de Medicación
                         </a>
                     </li>
@@ -67,7 +66,7 @@ const NavBar = ({ onSectionChange }) => {
                             className={`navbar__link ${activeSection === "citas" ? "active" : ""}`}
                             onClick={() => handleSectionClick("citas")}
                         >
-                            <img src={iconCitas} alt="Citas Médicas" className="navbar__icon" />
+                            <img src={iconCitas} alt="Citas Médicas" className="navbar__icon"/>
                             Citas Médicas
                         </a>
                     </li>
@@ -77,7 +76,7 @@ const NavBar = ({ onSectionChange }) => {
                             className={`navbar__link ${activeSection === "emergencias" ? "active" : ""}`}
                             onClick={() => handleSectionClick("emergencias")}
                         >
-                            <img src={iconEmergencias} alt="Emergencias" className="navbar__icon" />
+                            <img src={iconEmergencias} alt="Emergencias" className="navbar__icon"/>
                             Alertas y Emergencias
                         </a>
                     </li>
@@ -87,7 +86,7 @@ const NavBar = ({ onSectionChange }) => {
                             className={`navbar__link ${activeSection === "configuracion" ? "active" : ""}`}
                             onClick={() => handleSectionClick("configuracion")}
                         >
-                            <img src={iconConfiguracion} alt="Configuración" className="navbar__icon" />
+                            <img src={iconConfiguracion} alt="Configuración" className="navbar__icon"/>
                             Configuración y Permisos
                         </a>
                     </li>

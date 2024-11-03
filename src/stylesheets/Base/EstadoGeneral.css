@@ -1,0 +1,160 @@
+.estado-general {
+    display: flex;
+    justify-content: flex-start;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+}
+
+.estado-general__centro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 60px;
+}
+
+.estado-general__hora {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.estado-general__icono-reloj {
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+}
+
+.estado-general__texto-hora {
+    font-size: 1.4rem;
+}
+
+.estado-general__indicadores {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 12px;
+    width: 320px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.estado-general__salud {
+    display: flex;
+    flex-direction: column;
+}
+
+.estado-general__valor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px 0;
+}
+
+.estado-general__contenido {
+    display: flex;
+    align-items: center;
+}
+
+.estado-general__icono-indicador {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.estado-general__circulo {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.estado-general__circulo.verde {
+    background-color: green;
+}
+
+.estado-general__circulo.amarillo {
+    background-color: yellow;
+}
+
+.estado-general__titulo {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.estado-general__bolita {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 6px;
+}
+
+.estado-general__bolita.gris {
+    background-color: #ccc;
+}
+
+.estado-general__bolita.negro {
+    background-color: #000;
+}
+
+.estado-general__texto-titulo {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.estado-general__caras {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.estado-general__icono-caras {
+    width: 80%;
+    max-width: 220px;
+}
+
+.estado-general__barra {
+    width: 80%;
+    max-width: 220px;
+    height: 10px;
+    background: linear-gradient(to right, red, orange, yellow, lightgreen, green);
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.estado-general__botones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 120px;
+    gap: 20px;
+}
+
+.estado-general__boton {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    width: 150px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.estado-general__icono-lateral {
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
+    display: block;
+}
