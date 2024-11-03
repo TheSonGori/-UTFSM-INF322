@@ -7,6 +7,7 @@ import Medicacion from '../pages/Medicacion';
 import Citas from '../pages/Citas';
 import Emergencias from '../pages/Emergencias';
 import Configuracion from '../pages/Configuracion';
+import General from '../pages/EstadoGeneral';
 
 const Layout = () => {
     const [activeSection, setActiveSection] = useState(null);
@@ -27,7 +28,8 @@ const Layout = () => {
                     {activeSection === "citas" && <Citas />}
                     {activeSection === "emergencias" && <Emergencias />}
                     {activeSection === "configuracion" && <Configuracion />}
-                    {activeSection === null && <Base />}
+                    {activeSection === "general" && <General onSectionChange={handleSectionChange} />}
+                    {activeSection === null && <Base onSectionChange={handleSectionChange} />}
                 </main>
             </div>
         </div>
