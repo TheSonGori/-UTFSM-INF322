@@ -52,11 +52,6 @@
     border-bottom: 1px solid #ddd;
 }
 
-
-
-
-/* src/stylesheets/Configuracion/Configuracion.css */
-
 .modal__form {
     display: flex;
     flex-direction: column;
@@ -94,4 +89,53 @@
 
 .modal__form button:hover {
     background-color: #45a049;
+}
+
+
+/* src/stylesheets/Configuracion.css */
+
+.configuracion__button--delete img {
+    width: 20px; 
+    height: 20px;
+    filter: invert(50%) sepia(100%) saturate(100%) hue-rotate(-50deg) brightness(90%) contrast(90%); 
+    object-fit: contain; 
+    margin-left: 5px; 
+}
+
+
+.configuracion__button--delete {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: black; 
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9em;
+    gap: 5px;
+}
+
+.configuracion__button--delete:hover {
+    color: black; 
+    text-decoration: underline;
+}
+
+.configuracion__button--delete img {
+    width: 16px;
+    height: 16px;
+    filter: invert(50%) sepia(100%) saturate(100%) hue-rotate(-50deg) brightness(90%) contrast(90%);
+}
+
+/* Ajuste de estilo para la lista de contactos */
+.configuracion__contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.configuracion__contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
 }

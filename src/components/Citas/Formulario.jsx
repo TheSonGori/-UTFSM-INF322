@@ -18,105 +18,105 @@ const Formulario = ({ onSubmit, type }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="formulario">
+        <form onSubmit={handleSubmit} className="form">
             {type === 'consulta' ? (
                 <>
-                    <label className="formulario__label">Doctor/a:
+                    <label className="form__label">Doctor/a:
                         <input
                             type="text"
                             name="doctor"
                             value={formData.doctor}
                             onChange={handleChange}
                             required
-                            className="formulario__input"
+                            className="form__input"
                         />
                     </label>
-                    <label className="formulario__label">Especialidad:
+                    <label className="form__label">Especialidad:
                         <input
                             type="text"
                             name="especialidad"
                             value={formData.especialidad}
                             onChange={handleChange}
                             required
-                            className="formulario__input"
+                            className="form__input"
                         />
                     </label>
-                    <label className="formulario__label">Fecha:
+                    <label className="form__label">Fecha:
                         <input
                             type="date"
                             name="fecha"
                             value={formData.fecha}
                             onChange={handleChange}
                             required
-                            className="formulario__input"
+                            className="form__input"
                         />
                     </label>
-                    <label className="formulario__label">Hora:
+                    <label className="form__label">Hora:
                         <input
                             type="time"
                             name="hora"
                             value={formData.hora}
                             onChange={handleChange}
                             required
-                            className="formulario__input"
+                            className="form__input"
                         />
                     </label>
-                    <label className="formulario__label">Dirección:
+                    <label className="form__label">Dirección:
                         <input
                             type="text"
                             name="direccion"
                             value={formData.direccion}
                             onChange={handleChange}
                             required
-                            className="formulario__input"
+                            className="form__input"
                         />
                     </label>
                 </>
             ) : (
                 <>
-                    <label className="formulario__label">Examen:
+                    <label className="form__label">Examen:
                         <input
                             type="text"
                             name="examen"
                             value={formData.examen}
                             onChange={handleChange}
                             required
-                            className="formulario__input"
+                            className="form__input"
                         />
                     </label>
-                    <label className="formulario__label">Fecha:
+                    <label className="form__label">Fecha:
                         <input
                             type="date"
                             name="fecha"
                             value={formData.fecha}
                             onChange={handleChange}
                             required
-                            className="formulario__input"
+                            className="form__input"
                         />
                     </label>
-                    <label className="formulario__label">Horario:
+                    <label className="form__label">Horario:
                         <input
                             type="time"
                             name="horario"
                             value={formData.horario}
                             onChange={handleChange}
                             required
-                            className="formulario__input"
+                            className="form__input"
                         />
                     </label>
-                    <label className="formulario__label">Dirección:
+                    <label className="form__label">Dirección:
                         <input
                             type="text"
                             name="direccion"
                             value={formData.direccion}
                             onChange={handleChange}
                             required
-                            className="formulario__input"
+                            className="form__input"
                         />
                     </label>
                 </>
             )}
-            <button type="submit" className="formulario__submit">Agregar</button>
+            <button type="submit" className="form__submit">Agregar</button>
         </form>
     );
 };

@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Modal from '../components/Modal';
 import '../stylesheets/Configuracion/Configuracion.css';
 
+import BasuraIcon from '../assets/Iconos/Configuracion/Basura.png';
+
 const Configuracion = () => {
     const [patientInfo, setPatientInfo] = useState({
         name: "Nombre",
@@ -104,16 +106,21 @@ const Configuracion = () => {
             {/* Modal para Ver y Eliminar Contactos de Emergencia */}
             {showViewContactsModal && (
                 <Modal title="Contactos de Emergencia" onClose={() => setShowViewContactsModal(false)}>
-                    <ul>
+                    <ul className="configuracion__contact-list">
                         {emergencyContacts.map((contact, index) => (
-                            <li key={index}>
-                                {contact.name} - Teléfono: {contact.phone} - Correo: {contact.email} - Rol: {contact.role}
-                                <button onClick={() => handleDeleteEmergencyContact(index)} className="configuracion__button--delete">Eliminar</button>
+                            <li key={index} className="configuracion__contact-item">
+                                <span>
+                                    {contact.name} - Teléfono: {contact.phone} - Correo: {contact.email} - Rol: {contact.role}
+                                </span>
+                                <button onClick={() => handleDeleteEmergencyContact(index)} className="configuracion__button--delete">
+                                    <img src={BasuraIcon} alt="Eliminar" /> 
+                                </button>
                             </li>
                         ))}
                     </ul>
                 </Modal>
             )}
+
 
             {/* Modal para Agregar Contactos de Emergencia */}
             {showAddContactsModal && (

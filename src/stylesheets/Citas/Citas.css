@@ -144,20 +144,20 @@
 }
 
 /* Formulario */
-.formulario {
+.form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.formulario__label {
+.form__label {
     font-size: 0.9em;
     color: #333;
     display: block;
     margin-bottom: 5px;
 }
 
-.formulario__input {
+.form__input {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
@@ -166,7 +166,7 @@
     box-sizing: border-box;
 }
 
-.formulario__submit {
+.form__submit {
     background-color: #aaa;
     color: white;
     padding: 10px;
@@ -178,6 +178,6 @@
     width: 100%;
 }
 
-.formulario__submit:hover {
+.form__submit:hover {
     background-color: #888;
 }
