@@ -9,7 +9,6 @@ const Logout = ({ onLogout }) => {
 
     return (
         <button className="logout-button" onClick={handleLogout}>
-            <button className="logout-button" onClick={() => handleSectionClick(null)}></button>
             <div className="logout-button__icon-container">
                 <img src={gearIcon} alt="Engranaje" className="logout-button__icon" />
             </div>
