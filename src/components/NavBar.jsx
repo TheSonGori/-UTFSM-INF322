@@ -30,7 +30,10 @@ const NavBar = ({ onSectionChange }) => {
         <nav className="navbar">
             <div className="navbar__top">
                 <div className="navbar__logo">
-                    <a href="#" onClick={() => handleSectionClick(null)}>
+                    <a 
+                        href="#"
+                        onClick={() => handleSectionClick(null)}
+                    >
                         <img src={companyLogo} alt="Empresa" className="navbar__logo-image" />
                     </a>
                 </div>
