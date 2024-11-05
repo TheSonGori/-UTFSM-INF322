@@ -1,13 +1,15 @@
 import React from 'react';
 import gearIcon from '../assets/Iconos/Log-Out/Ruedita.png';
 
-const Logout = () => {
+
+const Logout = ({ onLogout }) => {
     const handleLogout = () => {
-        console.log('Cerrando sesión...');
+        onLogout();
     };
 
     return (
         <button className="logout-button" onClick={handleLogout}>
+            <button className="logout-button" onClick={() => handleSectionClick(null)}></button>
             <div className="logout-button__icon-container">
                 <img src={gearIcon} alt="Engranaje" className="logout-button__icon" />
             </div>

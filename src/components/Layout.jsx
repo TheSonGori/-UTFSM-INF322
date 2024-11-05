@@ -1,4 +1,3 @@
-// Layout.jsx
 import React, { useState } from 'react';
 import NavBar from './NavBar';
 import Logout from './Logout';
@@ -8,6 +7,7 @@ import Citas from '../pages/Citas';
 import Emergencias from '../pages/Emergencias';
 import Configuracion from '../pages/Configuracion';
 import General from '../pages/EstadoGeneral';
+import Landing from '../pages/Landing';
 
 const Layout = () => {
     const [activeSection, setActiveSection] = useState(null);
@@ -16,10 +16,20 @@ const Layout = () => {
         setActiveSection(section);
     };
 
+    const handleLogout = () => {
+        console.log('Logging out...');
+        window.location.hash = 'landing';
+        setActiveSection('landing');
+    };
+
+    if (activeSection === "landing") {
+        return <Landing onSectionChange={handleSectionChange} />;
+    }
+
     return (
         <div className="layout">
             <header className="layout__header">
-                <Logout />
+                <Logout onLogout={handleLogout} />
             </header>
             <div className="layout__main">
                 <NavBar onSectionChange={handleSectionChange} />
