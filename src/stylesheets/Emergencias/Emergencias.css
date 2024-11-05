@@ -132,3 +132,53 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* src/stylesheets/FormularioAlerta.css */
+
+.formu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre los campos */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+}
+
+.formu__label {
+    font-size: 1em;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+.formu__input {
+    margin-top: 5px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9em;
+    width: 100%;
+}
+
+.formu__input[type="date"],
+.formu__input[type="time"] {
+    padding: 6px;
+    font-size: 0.9em;
+}
+
+.formu__submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+}
+
+.formu__submit:hover {
+    background-color: #45a049;
+}
