@@ -1,290 +1,315 @@
-.calendar-page {
+/* src/stylesheets/Medicacion.css */
+
+/* Estilos generales */
+.medicacion-page {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0 20px;
+    padding: 20px;
 }
 
-.calendar-page__days-header {
+.medicacion-page__header {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
-    padding: 10px 0;
+    margin-bottom: 10px;
 }
 
-.calendar-page__arrow {
+.medicacion-page__month-selector {
+    padding: 3px 6px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.medicacion-page__add-button {
     background: none;
     border: none;
-    font-size: 24px;
     cursor: pointer;
-    padding: 0 15px;
+    margin-left: 10px;
 }
 
-.calendar-page__days-container {
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
-    padding: 0 10px;
-}
-
-.calendar-page__day {
-    position: relative;
-    width: 100%;
-    margin: 0 5px;
-    background-color: #ddd6cc;
-    border-radius: 60px;
-    text-align: center;
-    padding: 10px 0;
-    flex: 1;
-}
-
-.calendar-page__day:hover {
-    background-color: #cfc6b9;
-}
-
-.calendar-page__day-number {
-    font-size: 20px;
-    margin-bottom: 5px;
-    color: #333;
-}
-
-.calendar-page__day-name {
-    font-size: 14px;
-    color: #555;
-}
-
-.calendar-page__day--current {
-    background-color: #cce5ff;
-}
-
-.calendar-page__day-circle {
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 10px;
-    background-color: #007bff;
+.medicacion-page__add-button img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    background-color: #79b172;
     border-radius: 50%;
+    padding: 3px;
 }
 
-.calendar-page__content {
-    display: flex;
-    margin-top: 20px;
-    margin-left: 120px;
+.medicacion-page__add-button:hover img {
+    background-color: #45A049;
 }
 
-.calendar-page__calendar-section {
-    width: 60%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.calendar-page__calendar {
+/* Calendario */
+.medicacion-page__calendar {
     width: 100%;
-    background-color: #f0f0f0;
-    border-radius: 20px;
-    border: 1px solid #ccc;
+    background-color: #ffffff;
+    border-radius: 10px;
     padding: 10px;
     box-sizing: border-box;
 }
 
-.calendar-page__weekdays {
+.medicacion-page__weekdays {
     display: flex;
 }
 
-.calendar-page__weekday {
+.medicacion-page__weekday {
     flex: 1;
     text-align: center;
     font-weight: bold;
     padding: 5px 0;
 }
 
-.calendar-page__days-grid {
+.medicacion-page__days-grid {
     display: flex;
     flex-wrap: wrap;
 }
 
-.calendar-page__calendar-day {
+.medicacion-page__calendar-day {
     width: calc(100% / 7);
+    height: 60px;
     text-align: center;
-    padding: 10px 0;
+    padding: 5px 0;
     box-sizing: border-box;
     border: 1px solid #ddd;
     margin: -1px 0 0 -1px;
+    cursor: pointer;
+    position: relative;
 }
 
-.calendar-page__calendar-day--disabled {
+.medicacion-page__calendar-day--disabled {
     color: #aaa;
+    background-color: #f2f2f2;
 }
 
-.calendar-page__calendar-day--today {
-    background-color: #cce5ff;
+.medicacion-page__calendar-day--today {
+    background-color: #f4eee7;
 }
 
-.calendar-page__month-selector {
-    margin-top: 10px;
-    padding: 5px 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    align-self: center;
+.medicacion-page__calendar-day:hover {
+    background-color: #e0e0e0;
 }
 
-.calendar-page__today-section {
-    width: 60%;
-    margin-left: 10%;
-    margin-top: 10px;
+.medicacion-page__calendar-day-number {
+    font-size: 14px;
+    margin-bottom: 5px;
 }
 
-.calendar-page__today-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.calendar-page__today-box {
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    padding: 20px;
-    min-height: 200px;
-}
-
-.calendar-page__today-text {
-    font-size: 16px;
-    color: #666;
-}
-
-.calendar-page__actions {
+.medicacion-page__calendar-day-events {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 2px;
 }
 
-.calendar-page__button {
-    background: none;
-    border: none;
+.medicacion-page__event {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: relative;
     cursor: pointer;
 }
 
-.calendar-page__button img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: contain;
-    padding: 10px;
+.medicacion-page__event--consulta {
+    background-color: #007bff;
 }
 
-.calendar-page__button--add img {
-    background-color: #28a745;
-}
-
-.calendar-page__button--folder img {
+.medicacion-page__event--examen {
     background-color: #ffc107;
 }
 
-.calendar-page__button--delete img {
-    background-color: #dc3545;
+.medicacion-page__event--medicamento {
+    background-color: #28a745;
 }
 
-.calendar-page__button:hover img {
-    opacity: 0.8;
+/* Tooltip personalizado */
+.medicacion-page__event::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    display: none;
+    font-size: 0.8em;
+    z-index: 10;
 }
 
-.calendar-page__modal-overlay {
+.medicacion-page__event:hover::after {
+    display: block;
+}
+
+/* Modal Overlay */
+.medicacion-page__modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0,0,0,0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 999;
 }
 
-.calendar-page__modal {
+/* Menú modal */
+.medicacion-page__menu-modal {
     background-color: #fff;
-    border-radius: 10px;
-    padding: 20px 30px;
+    padding: 20px;
+    border-radius: 8px;
     width: 90%;
-    max-width: 500px;
+    max-width: 400px;
     text-align: center;
 }
 
-.calendar-page__modal-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.calendar-page__modal-title .asterisk {
-    color: gray;
-    font-size: 24px;
-}
-
-.calendar-page__modal-form input {
+.medicacion-page__menu-modal button {
+    display: block;
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     margin-bottom: 10px;
-    border-radius: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.medicacion-page__menu-modal button:hover {
+    background-color: #0056b3;
+}
+
+.medicacion-page__menu-modal .form__cancel {
+    background-color: #f13c3c;
+    margin-top: 10px;
+}
+
+.medicacion-page__menu-modal .form__cancel:hover {
+    background-color: #d12f2f;
+}
+
+/* Modal del formulario */
+.medicacion-page__modal {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.medicacion-page__modal-title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Formulario */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form__label {
+    font-size: 0.9em;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form__input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 8px;
     border: 1px solid #ccc;
-    font-size: 16px;
     box-sizing: border-box;
 }
 
-.calendar-page__modal-buttons {
+.form__buttons {
+    display: flex;
+    margin-top: 20px;
+}
+
+.form__button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 8px;
+    margin: 0 5px;
+}
+
+.form__submit {
+    background-color: #aaa;
+    color: white;
+}
+
+.form__submit.enabled {
+    background-color: #007bff;
+}
+
+.form__submit.enabled:hover {
+    background-color: #0056b3;
+}
+
+.form__submit:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.form__cancel {
+    background-color: #f13c3c;
+    color: white;
+}
+
+.form__cancel:hover {
+    background-color: #d12f2f;
+}
+
+/* Modal de detalles del evento */
+.medicacion-page__event-modal {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.medicacion-page__event-details {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.medicacion-page__event-details p {
+    margin-bottom: 10px;
+}
+
+.form__buttons {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-.calendar-page__modal-buttons button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
+.form__buttons .form__button {
     margin: 0 10px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.calendar-page__modal-buttons button:enabled:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
-
-.calendar-page__modal-buttons button:disabled {
-    background-color: #aaa;
-    cursor: not-allowed;
-}
-
-.calendar-page__modal-buttons button:nth-child(2) {
-    background-color: #f13c3c;
-}
-
-.calendar-page__modal-buttons button:nth-child(2):enabled:hover {
-    background-color: #d12f2f;
-}
-
-.calendar-page__medicacion {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 15px;
-}
-
-.calendar-page__medicacion input[type="checkbox"] {
-    margin-right: 10px;
-    margin-top: 5px;
-}
-
-.calendar-page__medicacion label {
-    font-size: 16px;
-    color: #333;
 }

@@ -55,22 +55,22 @@ const NavBar = ({ onSectionChange }) => {
                 <ul className="navbar__menu">
                     <li className="navbar__item">
                         <a
-                            href="#medicacion"
-                            className={`navbar__link ${activeSection === "medicacion" ? "active" : ""}`}
-                            onClick={() => handleSectionClick("medicacion")}
+                            href="#citas"
+                            className={`navbar__link ${activeSection === "general" ? "active" : ""}`}
+                            onClick={() => handleSectionClick("general")}
                         >
                             <img src={iconMedicacion} alt="Medicación" className="navbar__icon"/>
-                            Sección de Medicación
+                            Monitoreo
                         </a>
                     </li>
                     <li className="navbar__item">
                         <a
-                            href="#citas"
-                            className={`navbar__link ${activeSection === "citas" ? "active" : ""}`}
-                            onClick={() => handleSectionClick("citas")}
+                            href="#medicacion"
+                            className={`navbar__link ${activeSection === "medicacion" ? "active" : ""}`}
+                            onClick={() => handleSectionClick("medicacion")}
                         >
                             <img src={iconCitas} alt="Citas Médicas" className="navbar__icon"/>
-                            Citas Médicas
+                            Calendario
                         </a>
                     </li>
                     <li className="navbar__item">

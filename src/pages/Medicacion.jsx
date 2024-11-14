@@ -1,84 +1,16 @@
-import React, { useState, useEffect } from 'react';
+// src/pages/Medicacion.jsx
+import React, { useState } from 'react';
 import agregarIcon from '../assets/Iconos/Seccion-Medicacion/Mas.png';
-import carpetaIcon from '../assets/Iconos/Seccion-Medicacion/Carpeta.png';
-import eliminarIcon from '../assets/Iconos/Seccion-Medicacion/Basura.png';
+import Formulario from '../components/Citas/Formulario';
 
 const Medicacion = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [medicaciones, setMedicaciones] = useState([]);
-
-    const [formData, setFormData] = useState({
-        nombre: '',
-        dosis: '',
-        fechaInicio: '',
-        duracion: '',
-        vecesPorDia: '',
-        cadaCuanto: '',
-        horaPrimeraIngesta: '',
-    });
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    // Función para validar si todos los campos están completos
-    const isFormComplete = () => {
-        return Object.values(formData).every((value) => value !== '');
-    };
-
-    // Función para agregar la medicación
-    const handleAddMedication = () => {
-        if (isFormComplete()) {
-            setMedicaciones([...medicaciones, formData]);
-            setFormData({
-                nombre: '',
-                dosis: '',
-                fechaInicio: '',
-                duracion: '',
-                vecesPorDia: '',
-                cadaCuanto: '',
-                horaPrimeraIngesta: '',
-            });
-            setIsModalOpen(false);
-        }
-    };
-
-    const handleClearMedications = () => {
-        setMedicaciones([]);
-    };
-
-    const getDisplayedDays = () => {
-        const days = [];
-        const startDay = new Date(currentDate);
-        startDay.setDate(startDay.getDate() - 3); // 3 días antes del día actual
-
-        for (let i = 0; i < 7; i++) {
-            const day = new Date(startDay);
-            day.setDate(startDay.getDate() + i);
-            days.push({
-                date: day,
-                dayNumber: day.getDate(),
-                dayName: day.toLocaleDateString('es-ES', { weekday: 'short' }).replace('.', ''),
-                isCurrentDay: day.toDateString() === new Date().toDateString(),
-            });
-        }
-        return days;
-    };
-
-    const [displayedDays, setDisplayedDays] = useState(getDisplayedDays());
-
-    // Manejar el clic en las flechas
-    const handleArrowClick = (direction) => {
-        const newDate = new Date(currentDate);
-        newDate.setDate(newDate.getDate() + direction);
-        setCurrentDate(newDate);
-    };
-
-    useEffect(() => {
-        setDisplayedDays(getDisplayedDays());
-    }, [currentDate]);
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [showMenuModal, setShowMenuModal] = useState(false);
+    const [showForm, setShowForm] = useState(false);
+    const [formType, setFormType] = useState('');
+    const [events, setEvents] = useState([]);
+    const [selectedEvent, setSelectedEvent] = useState(null);
 
     const generateCalendarDays = () => {
         const calendarDays = [];
@@ -88,19 +20,38 @@ const Medicacion = () => {
         const firstDayOfMonth = new Date(year, month, 1);
         const startDayOfWeek = firstDayOfMonth.getDay();
 
-        const totalDays = 42;
+        const totalDays = 42; // 6 semanas completas
 
-        const startDate = new Date(firstDayOfMonth);
-        startDate.setDate(firstDayOfMonth.getDate() - startDayOfWeek);
+        const startDate = new Date(year, month, 1 - startDayOfWeek);
 
         for (let i = 0; i < totalDays; i++) {
             const day = new Date(startDate);
             day.setDate(startDate.getDate() + i);
+
+            // Filtrar eventos para este día
+            const dayEvents = events.filter(event => {
+                const eventDateStr = event.formData.fecha || event.formData.fechaInicio;
+
+                // Parsear la fecha sin ajustar la zona horaria
+                const [year, month, dayStr] = eventDateStr.split('-').map(Number);
+                const eventDate = new Date(year, month - 1, dayStr);
+
+                return (
+                    day.getFullYear() === eventDate.getFullYear() &&
+                    day.getMonth() === eventDate.getMonth() &&
+                    day.getDate() === eventDate.getDate()
+                );
+            });
+
             calendarDays.push({
                 date: day,
                 dayNumber: day.getDate(),
                 isCurrentMonth: day.getMonth() === month,
-                isToday: day.toDateString() === new Date().toDateString(),
+                isToday:
+                    day.getFullYear() === new Date().getFullYear() &&
+                    day.getMonth() === new Date().getMonth() &&
+                    day.getDate() === new Date().getDate(),
+                events: dayEvents,
             });
         }
 
@@ -109,192 +60,159 @@ const Medicacion = () => {
 
     const calendarDays = generateCalendarDays();
 
+    const handleDayClick = (day) => {
+        setSelectedDate(day.date);
+        setShowMenuModal(true);
+    };
+
+    const handleAddButtonClick = () => {
+        setSelectedDate(null);
+        setShowMenuModal(true);
+    };
+
+    const handleMenuOptionClick = (type) => {
+        setFormType(type);
+        setShowMenuModal(false);
+        setShowForm(true);
+    };
+
+    const handleFormSubmit = (formData) => {
+        setEvents([...events, { type: formType, formData }]);
+        setShowForm(false);
+        setFormType('');
+    };
+
+    const handleEventClick = (event) => {
+        setSelectedEvent(event);
+    };
+
+    const handleCloseEventModal = () => {
+        setSelectedEvent(null);
+    };
+
+    const handleDeleteEvent = () => {
+        setEvents(events.filter(event => event !== selectedEvent));
+        setSelectedEvent(null);
+    };
+
     return (
-        <div className="calendar-page">
-            <div className="calendar-page__days-header">
-                <button
-                    className="calendar-page__arrow calendar-page__arrow--left"
-                    onClick={() => handleArrowClick(-1)}
+        <div className="medicacion-page">
+            <div className="medicacion-page__header">
+                <select
+                    className="medicacion-page__month-selector"
+                    value={currentDate.getMonth()}
+                    onChange={(e) => {
+                        const newDate = new Date(currentDate);
+                        newDate.setMonth(parseInt(e.target.value));
+                        setCurrentDate(newDate);
+                    }}
                 >
-                    {"<"}
+                    {[
+                        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
+                    ].map((monthName, index) => (
+                        <option key={index} value={index}>
+                            {monthName}
+                        </option>
+                    ))}
+                </select>
+
+                <button className="medicacion-page__add-button" onClick={handleAddButtonClick}>
+                    <img src={agregarIcon} alt="Agregar" />
                 </button>
-                <div className="calendar-page__days-container">
-                    {displayedDays.map((day, index) => (
-                        <div
-                            key={index}
-                            className={`calendar-page__day ${
-                                day.isCurrentDay ? 'calendar-page__day--current' : ''
-                            }`}
-                        >
-                            {day.isCurrentDay && <div className="calendar-page__day-circle"></div>}
-                            <div className="calendar-page__day-number">{day.dayNumber}</div>
-                            <div className="calendar-page__day-name">{day.dayName}</div>
+            </div>
+
+            <div className="medicacion-page__calendar">
+                <div className="medicacion-page__weekdays">
+                    {['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].map((weekday, index) => (
+                        <div key={index} className="medicacion-page__weekday">
+                            {weekday}
                         </div>
                     ))}
                 </div>
-                <button
-                    className="calendar-page__arrow calendar-page__arrow--right"
-                    onClick={() => handleArrowClick(1)}
-                >
-                    {">"}
-                </button>
-            </div>
-
-            <div className="calendar-page__content">
-                <div className="calendar-page__calendar-section">
-                    <div className="calendar-page__calendar">
-                        <div className="calendar-page__weekdays">
-                            {['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].map((weekday, index) => (
-                                <div key={index} className="calendar-page__weekday">
-                                    {weekday}
-                                </div>
-                            ))}
-                        </div>
-                        <div className="calendar-page__days-grid">
-                            {calendarDays.map((day, index) => (
-                                <div
-                                    key={index}
-                                    className={`calendar-page__calendar-day ${
-                                        day.isCurrentMonth ? '' : 'calendar-page__calendar-day--disabled'
-                                    } ${day.isToday ? 'calendar-page__calendar-day--today' : ''}`}
-                                >
-                                    {day.dayNumber}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    <select
-                        className="calendar-page__month-selector"
-                        value={currentDate.getMonth()}
-                        onChange={(e) => {
-                            const newDate = new Date(currentDate);
-                            newDate.setMonth(parseInt(e.target.value));
-                            setCurrentDate(newDate);
-                        }}
-                    >
-                        {[
-                            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
-                        ].map((monthName, index) => (
-                            <option key={index} value={index}>
-                                {monthName}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className="calendar-page__today-section">
-                    <h2 className="calendar-page__today-title">Hoy Día</h2>
-                    <div className="calendar-page__today-box">
-                        {medicaciones.length === 0 ? (
-                            <p className="calendar-page__today-text">No hay medicación para hoy</p>
-                        ) : (
-                            medicaciones.map((medicacion, index) => (
-                                <div key={index} className="calendar-page__medicacion">
-                                    <input type="checkbox" id={`medicacion-${index}`} />
-                                    <label htmlFor={`medicacion-${index}`}>
-                                        <strong>{medicacion.nombre}</strong>
-                                        <br />
-                                        Fecha de Inicio: {medicacion.fechaInicio}
-                                        <br />
-                                        {medicacion.vecesPorDia}/{medicacion.duracion} días - {medicacion.vecesPorDia} cada {medicacion.cadaCuanto} [hrs]
-                                        <br />
-                                        {medicacion.horaPrimeraIngesta} [hrs]
-                                        <br />
-                                        {medicacion.dosis}
-                                    </label>
-                                </div>
-                            ))
-                        )}
-                    </div>
-
-                    <div className="calendar-page__actions">
-                        <button
-                            className="calendar-page__button calendar-page__button--add"
-                            onClick={() => setIsModalOpen(true)}
+                <div className="medicacion-page__days-grid">
+                    {calendarDays.map((day, index) => (
+                        <div
+                            key={index}
+                            className={`medicacion-page__calendar-day ${
+                                day.isCurrentMonth ? '' : 'medicacion-page__calendar-day--disabled'
+                            } ${day.isToday ? 'medicacion-page__calendar-day--today' : ''}`}
+                            onClick={() => handleDayClick(day)}
                         >
-                            <img src={agregarIcon} alt="Agregar" />
-                        </button>
-                        <button className="calendar-page__button calendar-page__button--folder">
-                            <img src={carpetaIcon} alt="Carpeta" />
-                        </button>
-                        <button
-                            className="calendar-page__button calendar-page__button--delete"
-                            onClick={handleClearMedications}
-                        >
-                            <img src={eliminarIcon} alt="Eliminar" />
-                        </button>
-                    </div>
+                            <div className="medicacion-page__calendar-day-number">{day.dayNumber}</div>
+                            {day.events.length > 0 && (
+                                <div className="medicacion-page__calendar-day-events">
+                                    {day.events.map((event, idx) => (
+                                        <div
+                                            key={idx}
+                                            className={`medicacion-page__event medicacion-page__event--${event.type}`}
+                                            data-tooltip={`${event.type.toUpperCase()}`}
+                                            onClick={(e) => {
+                                                e.stopPropagation(); // Evita que el click se propague al día
+                                                handleEventClick(event);
+                                            }}
+                                        ></div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    ))}
                 </div>
             </div>
 
-            {isModalOpen && (
-                <div className="calendar-page__modal-overlay">
-                    <div className="calendar-page__modal">
-                        <h2 className="calendar-page__modal-title">
-                            <span className="asterisk"></span> AGREGAR MEDICAMENTO <span className="asterisk"></span>
+            {showMenuModal && (
+                <div className="medicacion-page__modal-overlay">
+                    <div className="medicacion-page__menu-modal">
+                        <h2 className="medicacion-page__modal-title">Selecciona una opción</h2>
+                        <button onClick={() => handleMenuOptionClick('consulta')}>Consulta Médica</button>
+                        <button onClick={() => handleMenuOptionClick('examen')}>Exámenes</button>
+                        <button onClick={() => handleMenuOptionClick('medicamento')}>Medicamentos</button>
+                        <button className="form__cancel" onClick={() => setShowMenuModal(false)}>
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {showForm && (
+                <div className="medicacion-page__modal-overlay">
+                    <div className="medicacion-page__modal">
+                        <h2 className="medicacion-page__modal-title">
+                            Agregar{' '}
+                            {formType === 'consulta'
+                                ? 'Consulta Médica'
+                                : formType === 'examen'
+                                    ? 'Examen'
+                                    : 'Medicamento'}
                         </h2>
-                        <div className="calendar-page__modal-form">
-                            <input
-                                type="text"
-                                name="nombre"
-                                placeholder="Nombre Medicamento"
-                                value={formData.nombre}
-                                onChange={handleInputChange}
-                            />
-                            <input
-                                type="text"
-                                name="dosis"
-                                placeholder="Dosis"
-                                value={formData.dosis}
-                                onChange={handleInputChange}
-                            />
-                            <input
-                                type="text"
-                                name="fechaInicio"
-                                placeholder="Fecha de Inicio (DD/MM/AAAA)"
-                                value={formData.fechaInicio}
-                                onChange={handleInputChange}
-                            />
-                            <input
-                                type="number"
-                                name="duracion"
-                                placeholder="Duración del tratamiento (días)"
-                                value={formData.duracion}
-                                onChange={handleInputChange}
-                            />
-                            <input
-                                type="number"
-                                name="vecesPorDia"
-                                placeholder="¿Cuántas veces por día?"
-                                value={formData.vecesPorDia}
-                                onChange={handleInputChange}
-                            />
-                            <input
-                                type="number"
-                                name="cadaCuanto"
-                                placeholder="¿Cada cuánto? (hrs)"
-                                value={formData.cadaCuanto}
-                                onChange={handleInputChange}
-                            />
-                            <input
-                                type="text"
-                                name="horaPrimeraIngesta"
-                                placeholder="¿Hora de primera ingesta?"
-                                value={formData.horaPrimeraIngesta}
-                                onChange={handleInputChange}
-                            />
+                        <Formulario
+                            onSubmit={handleFormSubmit}
+                            type={formType}
+                            selectedDate={selectedDate}
+                            onClose={() => setShowForm(false)}
+                        />
+                    </div>
+                </div>
+            )}
 
-                            <div className="calendar-page__modal-buttons">
-                                <button
-                                    onClick={handleAddMedication}
-                                    disabled={!isFormComplete()}
-                                >
-                                    Agregar
-                                </button>
-                                <button onClick={() => setIsModalOpen(false)}>Cancelar</button>
-                            </div>
+            {selectedEvent && (
+                <div className="medicacion-page__modal-overlay">
+                    <div className="medicacion-page__event-modal">
+                        <h2 className="medicacion-page__modal-title">Detalle del Evento</h2>
+                        <div className="medicacion-page__event-details">
+                            {Object.entries(selectedEvent.formData).map(([key, value]) => (
+                                <p key={key}>
+                                    <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
+                                </p>
+                            ))}
+                        </div>
+                        <div className="form__buttons">
+                            <button className="form__button form__cancel" onClick={handleDeleteEvent}>
+                                Eliminar
+                            </button>
+                            <button className="form__button form__submit" onClick={handleCloseEventModal}>
+                                Cerrar
+                            </button>
                         </div>
                     </div>
                 </div>
