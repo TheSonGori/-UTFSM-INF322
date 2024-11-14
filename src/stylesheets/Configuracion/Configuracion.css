@@ -23,35 +23,8 @@
 }
 
 
-.configuracion__buttons {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px; /* Añadir un margen superior si es necesario */
-    flex-wrap: wrap;
-}
-
-.configuracion__button {
-    padding: 10px 20px;
-    background-color: #c2bbb2;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    color: #333;
-    transition: background-color 0.3s ease;
-    margin-right: 10px; /* Espacio entre los botones */
-}
-
-.configuracion__button:hover {
-    background-color: #a6a097;
-}
-
 /* Separador para cada sección */
-.configuracion__section-divider {
-    margin: 15px 0;
-    border-bottom: 1px solid #ddd;
-}
-
+/* Estilo para el formulario modal */
 .modal__form {
     display: flex;
     flex-direction: column;
@@ -66,63 +39,64 @@
     margin-bottom: 10px;
 }
 
+/* Estilo de los campos de entrada */
 .modal__form input {
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 20px;
     font-size: 0.9em;
-    margin-top: 5px;
     width: 100%;
+    margin-top: 5px;
+    background-color: #f9f9f9;
+    color: #666;
 }
 
-.modal__form button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
+/* Estilo para el botón de guardar/agregar */
+.configuracion__button--save {
+    background-color: #c2bbb2; /* Color neutro y calmante */
+    color: #fff;
+    padding: 12px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
     font-size: 1em;
     width: 100%;
+    text-align: center;
     margin-top: 20px;
+    transition: background-color 0.3s ease;
 }
 
-.modal__form button:hover {
-    background-color: #45a049;
+.configuracion__button--save:hover {
+    background-color: #a6a097;
 }
+
 
 
 /* src/stylesheets/Configuracion.css */
 
-.configuracion__button--delete img {
-    width: 20px; 
-    height: 20px;
-    filter: invert(50%) sepia(100%) saturate(100%) hue-rotate(-50deg) brightness(90%) contrast(90%); 
-    object-fit: contain; 
-    margin-left: 5px; 
-}
-
-
-.configuracion__button--delete {
-    background-color: transparent;
+.configuracion__button {
+    width: 100%;
+    padding: 15px;
+    background-color: #e0e0e0;
     border: none;
+    border-radius: 25px;
     cursor: pointer;
-    color: black; 
-    display: inline-flex;
-    align-items: center;
-    font-size: 0.9em;
-    gap: 5px;
+    font-size: 16px;
+    color: #333;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px; /* Espacio entre los botones */
+    text-align: left;
+    padding-left: 20px; /* Para alinear el texto más a la izquierda */
 }
 
-.configuracion__button--delete:hover {
-    color: black; 
-    text-decoration: underline;
+.configuracion__button:hover {
+    background-color: #cccccc;
 }
 
-.configuracion__button--delete img {
-    width: 16px;
-    height: 16px;
-    filter: invert(50%) sepia(100%) saturate(100%) hue-rotate(-50deg) brightness(90%) contrast(90%);
+/* Separador para cada sección */
+.configuracion__section-divider {
+    margin: 15px 0;
+    border-bottom: 1px solid #ddd;
 }
 
 /* Ajuste de estilo para la lista de contactos */
@@ -138,4 +112,55 @@
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
+}
+
+
+.configuracion__contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.configuracion__contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.configuracion__contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.configuracion__contact-name {
+    font-weight: bold;
+    color: #333;
+}
+
+.configuracion__contact-phone {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.configuracion__contact-email {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.configuracion__button--delete {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: black;
+    display: flex;
+    align-items: center;
+}
+
+.configuracion__button--delete img {
+    width: 20px;
+    height: 20px;
+    filter: invert(50%) sepia(100%) saturate(100%) hue-rotate(-50deg) brightness(90%) contrast(90%);
 }

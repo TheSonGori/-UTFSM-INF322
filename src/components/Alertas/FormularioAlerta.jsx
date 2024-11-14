@@ -31,36 +31,6 @@ const FormularioAlerta = ({ onSubmit }) => {
                     className="formu__input"
                 />
             </label>
-            <label className="formu__label">Fecha Inicio:
-                <input
-                    type="date"
-                    name="fechaInicio"
-                    value={formData.fechaInicio}
-                    onChange={handleChange}
-                    required
-                    className="formu__input"
-                />
-            </label>
-            <label className="formu__label">Fecha Término:
-                <input
-                    type="date"
-                    name="fechaTermino"
-                    value={formData.fechaTermino}
-                    onChange={handleChange}
-                    required
-                    className="formu__input"
-                />
-            </label>
-            <label className="formu__label">Hora de la Notificación:
-                <input
-                    type="time"
-                    name="horaNotificacion"
-                    value={formData.horaNotificacion}
-                    onChange={handleChange}
-                    required
-                    className="formu__input"
-                />
-            </label>
             <label className="formu__label">Prioridad:
                 <input
                     type="text"

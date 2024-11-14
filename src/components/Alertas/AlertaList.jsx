@@ -12,9 +12,6 @@ const AlertaList = ({ alertas, onDelete }) => {
                     <div key={index} className="alerta-list__item">
                         <div className="alerta-list__content">
                             <p><strong>{alerta.nombre}</strong></p>
-                            <p>Inicio: {alerta.fechaInicio}</p>
-                            <p>Fin: {alerta.fechaTermino}</p>
-                            <p>Hora: {alerta.horaNotificacion}</p>
                             <p>Prioridad: {alerta.prioridad}</p>
                         </div>
                         <button

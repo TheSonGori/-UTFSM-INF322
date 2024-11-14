@@ -72,8 +72,6 @@ const Emergencias = () => {
                             historialAlertas.map((alerta, index) => (
                                 <li key={index} className="historial-list__item">
                                     <p><strong>{alerta.nombre}</strong></p>
-                                    <p>Inicio: {alerta.fechaInicio}</p>
-                                    <p>Fin: {alerta.fechaTermino}</p>
                                     <p>Prioridad: {alerta.prioridad}</p>
                                 </li>
                             ))
@@ -84,9 +82,11 @@ const Emergencias = () => {
 
             {showEmergencyConfirmation && (
                 <Modal title="Modo Emergencia Activado" onClose={() => setShowEmergencyConfirmation(false)}>
-                    <p>Notificando a todos los contactos de emergencia.</p>
+                    <p>Se notificará a los contactos de emergencia en los próximos 10 segundos...</p>
+                    <p>Para cancelar, cierre esta ventana.</p>
                 </Modal>
             )}
+
         </div>
     );
 };
