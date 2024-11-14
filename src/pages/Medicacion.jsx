@@ -1,4 +1,5 @@
 // src/pages/Medicacion.jsx
+
 import React, { useState } from 'react';
 import agregarIcon from '../assets/Iconos/Seccion-Medicacion/Mas.png';
 import Formulario from '../components/Citas/Formulario';
@@ -11,54 +12,6 @@ const Medicacion = () => {
     const [formType, setFormType] = useState('');
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(null);
-
-    const generateCalendarDays = () => {
-        const calendarDays = [];
-        const year = currentDate.getFullYear();
-        const month = currentDate.getMonth();
-
-        const firstDayOfMonth = new Date(year, month, 1);
-        const startDayOfWeek = firstDayOfMonth.getDay();
-
-        const totalDays = 42; // 6 semanas completas
-
-        const startDate = new Date(year, month, 1 - startDayOfWeek);
-
-        for (let i = 0; i < totalDays; i++) {
-            const day = new Date(startDate);
-            day.setDate(startDate.getDate() + i);
-
-            // Filtrar eventos para este día
-            const dayEvents = events.filter(event => {
-                const eventDateStr = event.formData.fecha || event.formData.fechaInicio;
-
-                // Parsear la fecha sin ajustar la zona horaria
-                const [year, month, dayStr] = eventDateStr.split('-').map(Number);
-                const eventDate = new Date(year, month - 1, dayStr);
-
-                return (
-                    day.getFullYear() === eventDate.getFullYear() &&
-                    day.getMonth() === eventDate.getMonth() &&
-                    day.getDate() === eventDate.getDate()
-                );
-            });
-
-            calendarDays.push({
-                date: day,
-                dayNumber: day.getDate(),
-                isCurrentMonth: day.getMonth() === month,
-                isToday:
-                    day.getFullYear() === new Date().getFullYear() &&
-                    day.getMonth() === new Date().getMonth() &&
-                    day.getDate() === new Date().getDate(),
-                events: dayEvents,
-            });
-        }
-
-        return calendarDays;
-    };
-
-    const calendarDays = generateCalendarDays();
 
     const handleDayClick = (day) => {
         setSelectedDate(day.date);
@@ -94,6 +47,56 @@ const Medicacion = () => {
         setEvents(events.filter(event => event !== selectedEvent));
         setSelectedEvent(null);
     };
+
+    const handleCloseModal = () => {
+        setShowMenuModal(false);
+        setShowForm(false);
+    };
+
+    const generateCalendarDays = () => {
+        const calendarDays = [];
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+
+        const firstDayOfMonth = new Date(year, month, 1);
+        const startDayOfWeek = firstDayOfMonth.getDay();
+
+        const totalDays = 42; // 6 semanas completas
+
+        const startDate = new Date(year, month, 1 - startDayOfWeek);
+
+        for (let i = 0; i < totalDays; i++) {
+            const day = new Date(startDate);
+            day.setDate(startDate.getDate() + i);
+
+            const dayEvents = events.filter(event => {
+                const eventDateStr = event.formData.fecha || event.formData.fechaInicio;
+                const [year, month, dayStr] = eventDateStr.split('-').map(Number);
+                const eventDate = new Date(year, month - 1, dayStr);
+
+                return (
+                    day.getFullYear() === eventDate.getFullYear() &&
+                    day.getMonth() === eventDate.getMonth() &&
+                    day.getDate() === eventDate.getDate()
+                );
+            });
+
+            calendarDays.push({
+                date: day,
+                dayNumber: day.getDate(),
+                isCurrentMonth: day.getMonth() === month,
+                isToday:
+                    day.getFullYear() === new Date().getFullYear() &&
+                    day.getMonth() === new Date().getMonth() &&
+                    day.getDate() === new Date().getDate(),
+                events: dayEvents,
+            });
+        }
+
+        return calendarDays;
+    };
+
+    const calendarDays = generateCalendarDays();
 
     return (
         <div className="medicacion-page">
@@ -148,7 +151,7 @@ const Medicacion = () => {
                                             className={`medicacion-page__event medicacion-page__event--${event.type}`}
                                             data-tooltip={`${event.type.toUpperCase()}`}
                                             onClick={(e) => {
-                                                e.stopPropagation(); // Evita que el click se propague al día
+                                                e.stopPropagation();
                                                 handleEventClick(event);
                                             }}
                                         ></div>
@@ -161,22 +164,52 @@ const Medicacion = () => {
             </div>
 
             {showMenuModal && (
-                <div className="medicacion-page__modal-overlay">
-                    <div className="medicacion-page__menu-modal">
+                <div
+                    className="medicacion-page__modal-overlay"
+                    onClick={handleCloseModal}
+                >
+                    <div
+                        className="medicacion-page__menu-modal"
+                        onClick={(e) => e.stopPropagation()} // Evita cerrar al hacer clic en el contenido
+                    >
+                        <button
+                            className="medicacion-page__modal-close"
+                            onClick={handleCloseModal}
+                        >
+                            &times;
+                        </button>
                         <h2 className="medicacion-page__modal-title">Selecciona una opción</h2>
-                        <button onClick={() => handleMenuOptionClick('consulta')}>Consulta Médica</button>
-                        <button onClick={() => handleMenuOptionClick('examen')}>Exámenes</button>
-                        <button onClick={() => handleMenuOptionClick('medicamento')}>Medicamentos</button>
-                        <button className="form__cancel" onClick={() => setShowMenuModal(false)}>
-                            Cancelar
+                        <button
+                            className="medicacion-page__menu-button medicacion-page__menu-button--consulta"
+                            onClick={() => handleMenuOptionClick('consulta')}
+                        >
+                            Consulta Médica
+                        </button>
+                        <button
+                            className="medicacion-page__menu-button medicacion-page__menu-button--examen"
+                            onClick={() => handleMenuOptionClick('examen')}
+                        >
+                            Exámenes
+                        </button>
+                        <button
+                            className="medicacion-page__menu-button medicacion-page__menu-button--medicamento"
+                            onClick={() => handleMenuOptionClick('medicamento')}
+                        >
+                            Medicamentos
                         </button>
                     </div>
                 </div>
             )}
 
             {showForm && (
-                <div className="medicacion-page__modal-overlay">
-                    <div className="medicacion-page__modal">
+                <div className="medicacion-page__modal-overlay" onClick={handleCloseModal}>
+                    <div className="medicacion-page__modal" onClick={(e) => e.stopPropagation()}>
+                        <button
+                            className="medicacion-page__modal-close"
+                            onClick={handleCloseModal}
+                        >
+                            &times;
+                        </button>
                         <h2 className="medicacion-page__modal-title">
                             Agregar{' '}
                             {formType === 'consulta'
@@ -196,8 +229,14 @@ const Medicacion = () => {
             )}
 
             {selectedEvent && (
-                <div className="medicacion-page__modal-overlay">
-                    <div className="medicacion-page__event-modal">
+                <div className="medicacion-page__modal-overlay" onClick={handleCloseEventModal}>
+                    <div className="medicacion-page__event-modal" onClick={(e) => e.stopPropagation()}>
+                        <button
+                            className="medicacion-page__modal-close"
+                            onClick={handleCloseEventModal}
+                        >
+                            &times;
+                        </button>
                         <h2 className="medicacion-page__modal-title">Detalle del Evento</h2>
                         <div className="medicacion-page__event-details">
                             {Object.entries(selectedEvent.formData).map(([key, value]) => (

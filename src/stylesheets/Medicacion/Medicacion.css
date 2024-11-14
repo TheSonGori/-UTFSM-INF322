@@ -119,15 +119,15 @@
 }
 
 .medicacion-page__event--consulta {
-    background-color: #007bff;
+    background-color: #658fd6; /* Consulta Médica color */
 }
 
 .medicacion-page__event--examen {
-    background-color: #ffc107;
+    background-color: #f2cc1d; /* Exámenes color */
 }
 
 .medicacion-page__event--medicamento {
-    background-color: #28a745;
+    background-color: #edb5d3; /* Medicamentos color */
 }
 
 /* Tooltip personalizado */
@@ -158,7 +158,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -167,6 +167,7 @@
 
 /* Menú modal */
 .medicacion-page__menu-modal {
+    position: relative;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -175,33 +176,67 @@
     text-align: center;
 }
 
-.medicacion-page__menu-modal button {
+/* Botón de cierre en el modal */
+/* Ajuste para el botón "X" en el modal */
+.medicacion-page__menu-modal,
+.medicacion-page__modal,
+.medicacion-page__event-modal {
+    position: relative; /* Establece el contenedor del modal como contexto de posicionamiento */
+}
+
+.medicacion-page__modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: #333;
+    cursor: pointer;
+}
+
+
+
+/* Botones de opciones en el menú modal */
+.medicacion-page__menu-button {
     display: block;
     width: 100%;
     padding: 15px;
     margin-bottom: 10px;
-    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 1em;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.medicacion-page__menu-modal button:hover {
-    background-color: #0056b3;
+.medicacion-page__menu-button--consulta {
+    background-color: #658fd6; /* Color de Consulta Médica */
 }
 
-.medicacion-page__menu-modal .form__cancel {
-    background-color: #f13c3c;
-    margin-top: 10px;
+.medicacion-page__menu-button--consulta:hover {
+    background-color: #5078b8;
 }
 
-.medicacion-page__menu-modal .form__cancel:hover {
-    background-color: #d12f2f;
+.medicacion-page__menu-button--examen {
+    background-color: #f2cc1d; /* Color de Exámenes */
+    color: #333;
 }
 
-/* Modal del formulario */
+.medicacion-page__menu-button--examen:hover {
+    background-color: #d9b319;
+}
+
+.medicacion-page__menu-button--medicamento {
+    background-color: #edb5d3; /* Color de Medicamentos */
+}
+
+.medicacion-page__menu-button--medicamento:hover {
+    background-color: #d89ab8;
+}
+
+/* Modal de formulario */
 .medicacion-page__modal {
     background-color: #fff;
     padding: 20px;
@@ -243,6 +278,7 @@
 
 .form__buttons {
     display: flex;
+    justify-content: center;
     margin-top: 20px;
 }
 
@@ -257,30 +293,30 @@
 }
 
 .form__submit {
-    background-color: #aaa;
+    background-color: #c2bbb2;
     color: white;
 }
 
 .form__submit.enabled {
-    background-color: #007bff;
+    background-color: #9b948b;
 }
 
 .form__submit.enabled:hover {
-    background-color: #0056b3;
+    background-color: #928b82;
 }
 
 .form__submit:disabled {
-    background-color: #ccc;
+    background-color: #c2bbb2;
     cursor: not-allowed;
 }
 
 .form__cancel {
-    background-color: #f13c3c;
+    background-color: #c6302c;
     color: white;
 }
 
 .form__cancel:hover {
-    background-color: #d12f2f;
+    background-color: #ad2824;
 }
 
 /* Modal de detalles del evento */
@@ -302,14 +338,4 @@
 
 .medicacion-page__event-details p {
     margin-bottom: 10px;
-}
-
-.form__buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.form__buttons .form__button {
-    margin: 0 10px;
 }
