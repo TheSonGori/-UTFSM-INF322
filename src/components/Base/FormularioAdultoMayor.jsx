@@ -58,7 +58,7 @@ const FormularioAdultoMayor = ({ onCancel, cambio}) => {
                     </div>
 
                     <div className="formulario__campo">
-                        <label className="formulario__label" htmlFor="prevencion">Prevención</label>
+                        <label className="formulario__label" htmlFor="prevencion">Sistema de Salud</label>
                         <input
                             className="formulario__input"
                             type="text"
